@@ -46,6 +46,7 @@ jobs:
         echo "AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY" >> .env
         echo "BUCKET_NAME=$BUCKET_NAME" >> .env
         cat .env
+        dir -a
     - name: Build the Docker image
       run: docker build -t restuar/macaiki-backend:latest .
     - name: login docker hub
@@ -70,10 +71,7 @@ jobs:
   #         key: ${{ secrets.SSH_PRIVATE_KEY }}
   #         port: 22
   #         script: |
-  #           docker container stop macaiki-backend
-  #           docker container rm macaiki-backend
-  #           docker image rm restuar/macaiki-backend:latest
-  #           docker pull restuar/macaiki-backend:latest
-  #           docker create --name macaiki-backend -p "${{ secrets.APP_SERVER_PORT }}":"${{ secrets.APP_SERVER_PORT }}" --expose="${{ secrets.APP_SERVER_PORT }}" restuar/macaiki-backend:latest
-  #           docker network connect bayareen-network macaiki-backend
-  #           docker container start macaiki-backend
+  #           cd ~/macaiki-CI-CD
+  #           git pull origin main
+  #           docker-compose down
+  #           docker-compose up --build
