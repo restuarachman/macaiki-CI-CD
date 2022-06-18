@@ -1,0 +1,48 @@
+services:
+
+  app:
+    build: .
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - 8080:8080
+    environment:
+      - APP_DEBUG=true
+      - APP_SERVER_HOST=db
+      - APP_SERVER_PORT=8080
+
+      - DB_CONNECTION=MYSQL
+      - DB_HOST=db
+      - DB_PORT=3306
+      - DB_USERNAME=root
+      - DB_PASSWORD=toor
+      - DB_NAME=macaiki
+
+      - JWT_SECRET=$JWT_SECRET
+
+      - AWS_REGION=$AWS_REGION
+      - AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
+      - AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
+      - BUCKET_NAME=$BUCKET_NAME
+  
+  db:
+    image: bitnami/mysql
+    
+    # selalu restart container ini, kecuali container nya di stop
+    restart: unless-stopped
+    ports:
+      - 3307:3306
+    environment:
+      - MYSQL_DATABASE=macaiki
+      - MYSQL_ROOT_PASSWORD=toor
+    healthcheck:
+      test: ["CMD", "mysql", "-u", "root", "-ptoor", "-e", "show schemas"]
+      timeout: 10s
+
+  adminer:
+    image: adminer
+    restart: unless-stopped
+    ports:
+      - 8001:8000
