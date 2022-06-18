@@ -40,14 +40,6 @@ jobs:
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         BUCKET_NAME: ${{ secrets.BUCKET_NAME }}
       run: |
-        echo "APP_DEBUG=$APP_DEBUG" > .env
-        echo "APP_SERVER_HOST=$APP_SERVER_HOST" >> .env
-        echo "APP_SERVER_PORT=$APP_SERVER_PORT" >> .env
-        echo "DB_HOST=$DB_HOST" >> .env
-        echo "DB_PORT=$DB_PORT" >> .env
-        echo "DB_USERNAME=$DB_USERNAME" >> .env
-        echo "DB_PASSWORD=$DB_PASSWORD" >> .env
-        echo "DB_NAME=$DB_NAME" >> .env
         echo "JWT_SECRET=$JWT_SECRET" >> .env
         echo "AWS_REGION=$AWS_REGION" >> .env
         echo "AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID" >> .env
