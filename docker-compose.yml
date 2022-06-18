@@ -24,7 +24,7 @@ services:
     image: bitnami/mysql
     restart: unless-stopped
     ports:
-      - 3307:3306
+      - 3306:3306
     environment:
       - MYSQL_DATABASE=macaiki
       - MYSQL_ROOT_PASSWORD=toor
