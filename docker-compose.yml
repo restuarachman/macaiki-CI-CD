@@ -19,7 +19,6 @@ services:
       - DB_USERNAME=root
       - DB_PASSWORD=toor
       - DB_NAME=macaiki
-  
   db:
     image: bitnami/mysql
     restart: unless-stopped
