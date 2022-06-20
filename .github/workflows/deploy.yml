@@ -27,6 +27,14 @@ jobs:
     - uses: actions/checkout@v2
     - name : create env
       run: |
+        echo "APP_SERVER_HOST=${{ secrets.APP_SERVER_HOST }}" >> .env
+        echo "APP_SERVER_PORT=${{ secrets.APP_SERVER_PORT }}" >> .env
+        echo "DB_CONNECTION=${{ secrets.DB_CONNECTION }}" >> .env
+        echo "DB_HOST=${{ secrets.DB_HOST }}" >> .env
+        echo "DB_PORT=${{ secrets.DB_PORT }}" >> .env
+        echo "DB_USERNAME=${{ secrets.DB_USERNAME }}" >> .env
+        echo "DB_PASSWORD=${{ secrets.DB_PASSWORD }}" >> .env
+        echo "DB_NAME=${{ secrets.DB_NAME }}" >> .env
         echo "JWT_SECRET=${{ secrets.JWT_SECRET  }}" >> .env
         echo "AWS_REGION=${{ secrets.AWS_REGION  }}" >> .env
         echo "AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }}" >> .env
